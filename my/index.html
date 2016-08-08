@@ -22,12 +22,16 @@
                 len++;
             }
         }
+        var strArr = Str.split('');
+        console.log(strArr.length,len)
         for(var j = 0; j <= len; j++){
-            if(j % Num == Num - 1){
-
+            if(j%Num == Num-1){
+               strArr[j%Num] += '///';
+               console.log(j%Num);
             }
-
         }
+        var str = strArr.join('');
+        console.log(str);
     }
     function ajaxHandler(data) {
         console.log(data);
