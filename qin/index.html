@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>打字测试</title>
+        <link rel="stylesheet" type="text/css" href="styles/reset.css" />
+        <link rel="stylesheet" type="text/css" href="styles/main.css" />
+    </head>
+    <body>
+        <div class="score">
+            <div class="board">
+                <p>本次测试已结束！您的成绩如下：</p>
+                <p>文章字数：8888字</p>
+                <p>完成字数：6666字</p>
+                <p>所用时间：06分06秒</p>
+                <a class="return" href="login.php"><img src="images/return.png" alt=""><p>返回登录页</p></a>
+            </div>
+        </div>
+        <form id='form'>
+            <div class="header">
+                <div class="header2"></div>
+            </div>
+            <div id="main">
+                <div class="show" id="panel">
+                    <p>您好！</p>
+                    <p>文章总字数:<span id="total"></span>字</p>
+                    <p>已完成：<span id="finish">0</span>字</p>
+                    <p>已用时：<span id="min">0</span>分<span id="sec">0</span>秒</p>
+                    <div class="button submit"><img src="images/send.png" alt=""><p>提交</p></div>
+                    <a class="button" href="login.php"><img src="images/return.png" alt=""><p>返回登录页</p></a>
+                </div>
+            </div>
+        </form>
+        <script type="text/javascript" src="scripts/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="scripts/main.js" id="script"></script>
+    </body>
+</html>

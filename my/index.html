@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script src="scripts/jquery-1.11.3.min.js"></script>
+<script>
+    function getStringLen(Str,Num) {
+        var len, code;
+        len = Str.length;
+        var divArr = [];
+        if (Str == null || Str == "" || len <= Num){
+            return 0;
+        }
+        for (var i = 0; i < Str.length; i++) {
+            code = Str.charCodeAt(i);
+            //code > 255为汉字 len=2
+            if (code > 255) {
+                len++;
+            }
+        }
+        for(var j = 0; j <= len; j++){
+            if(j % Num == Num - 1){
+
+            }
+
+        }
+    }
+    function ajaxHandler(data) {
+        console.log(data);
+        console.log(getStringLen(data,40))
+
+    }
+    $.ajax({
+        url: 'article.txt',
+        type: 'GET',
+        success: ajaxHandler
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+
+body {
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    background: url(../images/keyboard.png) no-repeat;
+    background-position: 700px 0;
+    background-size: contain;
+    background-color: #eef5f9;
+}
+.main {
+    width: 1200px;
+    padding-top: 120px;
+    margin: 0 auto;
+}
+.scope {
+    float: left;
+    width: 515px;
+    height: 442px;
+    background: url(../images/scope.png) no-repeat;
+    background-size: contain;
+}
+.scopeM {
+    width: 455px;
+    height: 272px;
+    margin: 24px 0 0 30px;
+    padding-top: 20px;
+}
+.scopeM .header {
+    width: 276px;
+    height: 27px;
+    margin: 0 auto 30px;
+    background: url(../images/header.png) no-repeat;
+    background-size: contain;
+}
+.scopeM .line {
+    width: 280px;
+    height: 40px;
+    margin: 0 auto 25px;
+    position: relative;
+}
+.line label {
+    color: white;
+    margin-right: 10px;
+    font-size: 18px;
+    line-height: 30px;
+    text-decoration: none;
+    font-family: "Microsoft YaHei";
+}
+.line input {
+    width: 200px;
+    height: 30px;
+    padding: 0 10px;
+    border: white 2px solid;
+    border-radius: 15px;
+    background-color: #67767b;
+    color: white;
+    outline: 0;
+    font-size: 16px;
+    line-height: 30px;
+    font-family: "Microsoft YaHei";
+}
+.line input.fail {
+    border-color: #7d0022;
+}
+.line .marked {
+    display: none;
+    color: #7d0022;
+    position: absolute;
+    top: 0;
+    left: 68px;
+    font-size: 14px;
+    line-height: 34px;
+    font-family: "Microsoft YaHei";
+}
+.scopeM .submit {
+    display: block;
+    width: 130px;
+    height: 30px;
+    margin: 0 auto;
+    border: white 2px solid;
+    border-radius: 15px;
+    background-color: #e1e8e9;
+    color: #0d323f;
+    text-align: center;
+    font-size: 18px;
+    line-height: 30px;
+    text-decoration: none;
+    font-family: "Microsoft YaHei";
+    cursor: pointer;
+}
+.submit:hover {
+    background-color: #bdcbcf;
+}
+.explain {
+    float: left;
+    padding-left: 50px;
+    width: 450px;
+    height: 342px;
+}
+.explain p {
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    color: #052836;
+    margin-top: 40px;
+}

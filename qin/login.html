@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>打字测试</title>
+        <link rel="stylesheet" type="text/css" href="styles/reset.css" />
+        <link rel="stylesheet" type="text/css" href="styles/login.css" />
+    </head>
+    <body>
+        <div class="main">
+            <div class="scope">
+                <div class="scopeM">
+                    <div class="header"></div>
+                    <div class="line">
+                        <label for="account">账号</label>
+                        <input type="text" name="account">
+                        <p class="marked">您的账号不正确，请重新输入</p>
+                    </div>
+                    <div class="line">
+                        <label for="pwd">密码</label>
+                        <input type="password" name="pwd">
+                        <p class="marked">您的密码不正确，请重新输入</p>
+                    </div>
+                    <a href="javascript:void(0)" class="submit">登录</a>
+                </div>
+            </div>
+            <div class="explain">
+                <p>测试说明:</p>
+                <p>1.测试过程中系统自动计时，到时自动提交；</p>
+                <p>2.测试前请关闭其他浏览器窗口，关闭可能弹窗的应用如QQ、屏保等，测试中不要切换到测试窗口以外的区域，以免影响测试结果；</p>
+                <p>3.测试过程中如有错字，每错一个字最后成绩加3秒。</p>
+            </div>
+        </div>
+        <script type="text/javascript" src="scripts/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="scripts/login.js" id="script"></script>
+    </body>
+</html>

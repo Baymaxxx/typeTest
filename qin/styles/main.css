@@ -1,0 +1,152 @@
+html {
+    background: #eef5f9;
+}
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    background: url(../images/bg.png) no-repeat;
+    background-size: 100%;
+}
+#form {
+    display: block;
+    margin: 0 auto;
+    width: 1200px;
+    overflow: hidden;
+}
+#main {
+    overflow: hidden;
+    width: 1200px;
+    min-height: 600px;
+    font-size: 16px;
+}
+.header {
+    width: 1200px;
+    height: 203px;
+    background: url(../images/keyboard.png) no-repeat;
+    background-size: contain;
+    background-position: 720px 0;
+    overflow: hidden;
+}
+.header2 {
+    width: 306px;
+    height: 30px;
+    margin: 96px 0 0 450px;
+}   
+
+.oDiv {
+    width: 900px;
+    border: #bedee8 12px solid;
+    outline: #c9c9c9 2px solid;
+    margin-bottom: 70px;
+}
+.oDiv textarea {
+    border: #c9c9c9 2px solid;
+    font-family: "Microsoft YaHei";
+    font-size: 16px;
+    line-height: 24px;
+    outline: 0;
+    text-indent: 2em;
+}
+.oLine {
+    height: 9px;
+    background-color: #bedee8;
+}
+.oP {
+    padding: 10px 3px;
+    border: #c9c9c9 2px solid;
+    font-family: "Microsoft YaHei";
+    font-size: 16px;
+    line-height: 24px;
+    background-color: white;
+    text-indent: 2em;
+}
+textarea {
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 2px;
+    border: 1px solid #a9a9a9;
+    width: 100%;
+    resize: none;
+    font-size: 16px;
+    line-height: 24px;
+}
+span.true {
+    color: #389574;
+}
+span.false {
+    color: #9f0000;
+}
+
+.show {
+    width: 160px;
+    height: 326px;
+    padding: 25px;
+    float: right;
+    border: #84ccc9 6px solid;
+    background-color: #6d8b95;
+}
+.show p  {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-family: "Microsoft YaHei";
+}
+.button {
+    width: 160px;
+    height: 40px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.button img {
+    float: left;
+    margin-right: 10px;
+}
+.button p {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+}
+
+
+.score {
+    display: none;
+    width: 773px;
+    height: 648px;
+    padding-top: 16px;
+    margin: 153px auto 0;
+    background: url(../images/scope.png) no-repeat;
+}
+.score .board {
+    width: 544px;
+    height: 364px;
+    margin: 36px 0 0 45px;
+    padding: 45px 0 0 140px;
+    position: relative;
+}
+.board p {
+    height: 40px;
+    color: white;
+    margin-bottom: 26px;
+    font-size: 26px;
+    line-height: 40px;
+    font-family: "Microsoft YaHei";
+}
+.board .return {
+    position: absolute;
+    right: 80px;
+    bottom: 58px;
+    cursor: pointer;
+}
+.return img {
+    float: left;
+    margin-right: 10px;
+}
+.return p {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+}
