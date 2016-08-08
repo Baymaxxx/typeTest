@@ -5,43 +5,50 @@
     <title></title>
 </head>
 <body>
-<div id="str"></div>
+<span id="str"></span>
 <script src="scripts/jquery-1.11.3.min.js"></script>
 <script>
     function getStringLen(Str,Num) {
-        var len, code;
-        len = Str.length;
+        var len = Str.length;
         var divArr = [];
+        for(var i=0;i<=len;i++){
+            divArr[i] = []
+        }
         if (Str == null || Str == "" || len <= Num){
             return 0;
         }
         for (var i = 0; i < Str.length; i++) {
-            code = Str.charCodeAt(i);
+            var code = Str.charCodeAt(i);
             //code > 255为汉字 len=2
             if (code > 255) {
                 len++;
             }
         }
         var strArr = Str.split('');
-        console.log(strArr.length,len);
-        for(var j = 0; j <= len; j++){
-            if(j % Num == Num-1){
-                strArr[Math.ceil(j/2)] += '/***/';
+        var jArr = [];
+        for(var j = 0; j <= strArr.length; j++){
+            if(Num && j % Num == 0 ){
+                jArr.push(j);
             }
         }
-        var str = strArr.join('');
-        return str;
+        for(var j = 0;j <= jArr[j];j++) {
+            if(j == 0){
+                divArr[0].push(strArr[0]);
+            }
+            for (var i = jArr[j] + 1; i <= jArr[j + 1]; i++) {
+                divArr[j].push(strArr[i]);
+            }
+        }
+        for(var i=0;i<=divArr.length;i++) {
+            console.log(divArr[i]);
+        }
+        return strArr.join('');
     }
     function ajaxHandler(Data) {
-        var data = Data.replace(/[\r\n]/g,"").replace(/[ ]/g,"");
-        var dataArr = data.split('');
-        for(var i = 0;i <= dataArr.length;i++){
-            if(dataArr[i] == ' '){
-                console.log(dataArr[i]);
-            }
-        }
-        console.log(data);
-        $('#str').html(getStringLen(data,80));
+        //文本去除空格和换行
+        var data = Data.replace(/\r\n/g,"").replace(/\s+/g,"");
+        data = getStringLen(data,80);
+        $('#str').text(data);
     }
     $.ajax({
         url: 'article.txt',
