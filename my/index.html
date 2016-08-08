@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-
+<div id="str"></div>
 <script src="scripts/jquery-1.11.3.min.js"></script>
 <script>
     function getStringLen(Str,Num) {
@@ -23,20 +23,19 @@
             }
         }
         var strArr = Str.split('');
-        console.log(strArr.length,len)
+        console.log(strArr.length,len);
         for(var j = 0; j <= len; j++){
-            if(j%Num == Num-1){
-               strArr[j%Num] += '///';
-               console.log(j%Num);
+            if(j % Num == Num-1){
+                strArr[Math.ceil(j/2)] += '/***/';
             }
         }
         var str = strArr.join('');
-        console.log(str);
+        return str;
     }
-    function ajaxHandler(data) {
+    function ajaxHandler(Data) {
+        var data = Data.replace(/[\r\n]/g,"").replace(/[ ]/g,"");
         console.log(data);
-        console.log(getStringLen(data,40))
-
+        $('#str').html(getStringLen(data,80));
     }
     $.ajax({
         url: 'article.txt',
