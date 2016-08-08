@@ -11,8 +11,8 @@
     function getStringLen(Str,Num) {
         var len = Str.length;
         var divArr = [];
-        for(var i=0;i<=len;i++){
-            divArr[i] = []
+        for(var i=0;i<=len/Num;i++){
+            divArr[i] = [];
         }
         if (Str == null || Str == "" || len <= Num){
             return 0;
@@ -40,8 +40,18 @@
             }
         }
         for(var i=0;i<=divArr.length;i++) {
+            if(divArr[i].length == 0){
+                divArr.pop();
+            }
             console.log(divArr[i]);
         }
+        divArr[divArr.length] =[];
+        var lastNum = divArr.length - 1;
+        for(var i = strArr.length;i > jArr[jArr.length-1];i--) {
+            divArr[lastNum].push(strArr[i]);
+        }
+        divArr[lastNum].reverse();
+        console.log(divArr[divArr.length-1])
         return strArr.join('');
     }
     function ajaxHandler(Data) {
