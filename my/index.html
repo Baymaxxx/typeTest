@@ -53,8 +53,8 @@
         return divArr;
     }
     function ajaxHandler(Data) {
-        //文本去除空格和换行
-        var data = Data.replace(/\r\n/g,"").replace(/\s+/g,"");
+        //文本去除换行  如需去除空格使用replace(/\s+/g,"")
+        var data = Data.replace(/\r\n/g,"");
         data = getStringLen(data,80);
         $('#str').html(data.join(''));
     }
