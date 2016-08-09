@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<span id="str"></span>
+<div id="str"></div>
 <script src="scripts/jquery-1.11.3.min.js"></script>
 <script>
     function getStringLen(Str,Num) {
@@ -32,10 +32,7 @@
             }
         }
         for(var j = 0;j <= jArr[j];j++) {
-            if(j == 0){
-                divArr[0].push(strArr[0]);
-            }
-            for (var i = jArr[j] + 1; i <= jArr[j + 1]; i++) {
+            for (var i = jArr[j]; i <= jArr[j + 1] - 1; i++) {
                 divArr[j].push(strArr[i]);
             }
         }
@@ -43,7 +40,6 @@
             if(divArr[i].length == 0){
                 divArr.pop();
             }
-            console.log(divArr[i]);
         }
         divArr[divArr.length] =[];
         var lastNum = divArr.length - 1;
@@ -51,14 +47,16 @@
             divArr[lastNum].push(strArr[i]);
         }
         divArr[lastNum].reverse();
-        console.log(divArr[divArr.length-1])
-        return strArr.join('');
+        for(var i = 0;i < divArr.length;i++){
+            divArr[i] = '<div>'+ divArr[i].join('') +'</div>'
+        }
+        return divArr;
     }
     function ajaxHandler(Data) {
         //文本去除空格和换行
         var data = Data.replace(/\r\n/g,"").replace(/\s+/g,"");
         data = getStringLen(data,80);
-        $('#str').text(data);
+        $('#str').html(data.join(''));
     }
     $.ajax({
         url: 'article.txt',
