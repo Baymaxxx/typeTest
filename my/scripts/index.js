@@ -42,6 +42,28 @@ function getStringLen(Str, Num) {
     }
     return divArr;
 }
+function compareText(e){
+    var tar = e.target.id;
+    var val = $('#'+tar).val();
+    var l = val.length;
+    var html = '', n = 0;
+    var ele = $('#'+tar).parent().find('.oldText');
+    var oText =ele.text().split('');
+    for(var i = 0;i < val.length;i++){
+        if(oText[i] === val[i]) {
+            html+='<span class="true">'+ oText[i] +'</span>';
+            n++;
+        } else {
+            html+='<span class="false">'+ oText[i] +'</span>';
+        }
+    }
+    html += $('#'+tar).parent().find('.oldText').text().slice(l);
+    ele.html(html)
+    console.log(html);
+}
+$('body').keyup(function (e) {
+    compareText(e);
+})
 function ajaxHandler(Data) {
     var dataArr;
     var html='';
@@ -53,7 +75,8 @@ function ajaxHandler(Data) {
               +     "<p class='oldText'>"
               +         dataArr[i]
               +     "</p>"
-              +     "<input class='newText' type='text'>"
+              +     "<input class='newText' id='text"
+              +     i+ "' type='text'/>"
               + "</div>"
     }
     $(".m-type").html(html);
