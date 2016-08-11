@@ -48,7 +48,8 @@ function compareText(e){
     var l = val.length;
     var html = '', n = 0;
     var ele = $('#'+tar).parent().find('.oldText');
-    var oText =ele.text().split('');
+    var oText = ele.text().split('');
+    if (l > oText.length) { l = oText.length }
     for(var i = 0;i < val.length;i++){
         if(oText[i] === val[i]) {
             html+='<span class="true">'+ oText[i] +'</span>';
@@ -57,8 +58,12 @@ function compareText(e){
             html+='<span class="false">'+ oText[i] +'</span>';
         }
     }
-    html += $('#'+tar).parent().find('.oldText').text().slice(l);
-    ele.html(html)
+    html += ele.text().slice(l);
+    ele.html(html);
+    if(n == oText[i].length) {
+        $('#'+tar).val(oText[i].text());
+        if( i+1 !== textareas.length ) { textareas[eq+1].focus(); }
+    }
     console.log(html);
 }
 $('body').keyup(function (e) {
@@ -67,8 +72,8 @@ $('body').keyup(function (e) {
 function ajaxHandler(Data) {
     var dataArr;
     var html='';
-    //文本去除换行  中文需去除空格使用replace(/\s+/g,"")
-    var data = Data.replace(/\r\n/g, "").replace(/\s+/g,"");
+    //文本去除换行  replace(/\s+([\u4e00-\u9fa5])/ig,'$1'):去除中文的空格，
+    var data = Data.replace(/\r\n/g, "").replace(/\s+([\u4e00-\u9fa5])/ig,'$1');
     dataArr = getStringLen(data, 50);
     for(var i=0;i < dataArr.length;i++){
         html += "<div class='u-list'>"
