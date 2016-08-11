@@ -45,7 +45,11 @@ function getStringLen(Str, Num) {
 function compareText(e){
     var tar = e.target.id;
     var val = $('#'+tar).val();
-    var l = val.length;
+    if(val){
+        var l = val.length;
+    }else{
+        return false;
+    }
     var html = '', n = 0;
     var ele = $('#'+tar).parent().find('.oldText');
     var oText = ele.text().split('');
@@ -61,14 +65,11 @@ function compareText(e){
     html += ele.text().slice(l);
     ele.html(html);
     if(n == oText[i].length) {
-        $('#'+tar).val(oText[i].text());
-        if( i+1 !== textareas.length ) { textareas[eq+1].focus(); }
+        //$('#'+tar).val(oText[i].text());
+        //if( i+1 !== textareas.length ) { textareas[eq+1].focus(); }
     }
     console.log(html);
 }
-$('body').keyup(function (e) {
-    compareText(e);
-})
 function ajaxHandler(Data) {
     var dataArr;
     var html='';
@@ -81,13 +82,17 @@ function ajaxHandler(Data) {
               +         dataArr[i]
               +     "</p>"
               +     "<input class='newText' id='text"
-              +     i+ "' type='text'/>"
+              +     i+ "' type='text' />"
               + "</div>"
     }
     $(".m-type").html(html);
+    $('input').keyup(function (e) {
+        compareText(e);
+    })
 }
 $.ajax({
     url: 'article.txt',
     type: 'GET',
     success: ajaxHandler
 });
+
