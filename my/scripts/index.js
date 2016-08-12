@@ -43,39 +43,48 @@ function getStringLen(Str, Num) {
     return divArr;
 }
 function compareText(e){
-    var tar = e.target.id;
-    var val = $('#'+tar).val();
-    if(val){
-        var l = val.length;
+    //input的id
+    var inputId = e.target.id;
+    var id = parseInt(inputId.slice(4));
+    //input的value
+    var inputVal = $('#'+inputId).val();
+    if(inputVal){
+        //inputVal的长度
+        var inputLen = inputVal.length;
     }else{
         return false;
     }
-    var html = '', n = 0;
-    var ele = $('#'+tar).parent().find('.oldText');
-    var oText = ele.text().split('');
-    if (l > oText.length) { l = oText.length }
-    for(var i = 0;i < val.length;i++){
-        if(oText[i] === val[i]) {
-            html+='<span class="true">'+ oText[i] +'</span>';
-            n++;
-        } else {
-            html+='<span class="false">'+ oText[i] +'</span>';
+    var html = '', t = 0;
+    var oldText = $('#'+inputId).parent().find('.oldText');
+    //原文文字转数组
+    var oTextArr = oldText.text().split('');
+    console.log(oTextArr);
+    for(var i = 0;i < inputLen;i++){
+        if(inputLen <= oTextArr.length){
+            if(oTextArr[i] === inputVal[i]) {
+                html+='<span class="true">'+ oTextArr[i] +'</span>';
+                t++;
+            } else {
+                html+='<span class="false">'+ oTextArr[i] +'</span>';
+            }
+            html += oldText.text().slice(inputLen);
+            oldText.html(html);
         }
     }
-    html += ele.text().slice(l);
-    ele.html(html);
-    if(n == oText[i].length) {
-        //$('#'+tar).val(oText[i].text());
-        //if( i+1 !== textareas.length ) { textareas[eq+1].focus(); }
+    // 输入字符长度>=原文长度
+    if (inputLen >= oTextArr.length) {
+        if($('#text'+ (id + 1))){
+            console.log($('#text'+ (id + 1)))
+            $('#text'+ (id + 1)).focus();
+        }
     }
-    console.log(html);
 }
 function ajaxHandler(Data) {
     var dataArr;
     var html='';
     //文本去除换行  replace(/\s+([\u4e00-\u9fa5])/ig,'$1'):去除中文的空格，
     var data = Data.replace(/\r\n/g, "").replace(/\s+([\u4e00-\u9fa5])/ig,'$1');
-    dataArr = getStringLen(data, 50);
+    dataArr = getStringLen(data, 2);
     for(var i=0;i < dataArr.length;i++){
         html += "<div class='u-list'>"
               +     "<p class='oldText'>"
