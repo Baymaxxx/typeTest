@@ -42,6 +42,9 @@ function getStringLen(Str, Num) {
     }
     return divArr;
 }
+function compareTextUp(){
+
+}
 function compareText(e){
     //input的id
     var inputId = e.target.id;
