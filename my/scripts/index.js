@@ -45,38 +45,42 @@ function getStringLen(Str, Num) {
 function compareText(e){
     //input的id
     var inputId = e.target.id;
-    var id = parseInt(inputId.slice(4));
-    //input的value
-    var inputVal = $('#'+inputId).val();
-    if(inputVal){
-        //inputVal的长度
-        var inputLen = inputVal.length;
-    }else{
-        return false;
-    }
-    var html = '', t = 0;
     var oldText = $('#'+inputId).parent().find('.oldText');
     //原文文字转数组
     var oTextArr = oldText.text().split('');
+    //原文文字长度
+    var oTextArrLen = oTextArr.length;
+    //id为input的id中数字
+    var id = parseInt(inputId.slice(4));
+    //input的value
+    var inputVal = $('#'+inputId).val();
+    //input的长度
+    var inputLen = inputVal.length;
+    //多出文字在下一行显示
+    if (inputLen >= oTextArrLen) {
+        $('#'+inputId).val(inputVal.slice(0, oTextArrLen));
+        //文本行数
+        var lineLen = $('.u-list').length;
+        if (id != lineLen - 1) {
+            $('#text'+ (id + 1)).focus();
+            $('#text'+ (id + 1)).val($('#text'+ (id + 1)).val() + inputVal.slice(oTextArrLen));
+        }
+    }
+    var html = '', t = 0;
     console.log(oTextArr);
     for(var i = 0;i < inputLen;i++){
-        if(inputLen <= oTextArr.length){
+        if(inputLen <= oTextArrLen){
             if(oTextArr[i] === inputVal[i]) {
                 html+='<span class="true">'+ oTextArr[i] +'</span>';
                 t++;
             } else {
                 html+='<span class="false">'+ oTextArr[i] +'</span>';
             }
-            html += oldText.text().slice(inputLen);
-            oldText.html(html);
         }
     }
-    // 输入字符长度>=原文长度
-    if (inputLen >= oTextArr.length) {
-        if($('#text'+ (id + 1))){
-            console.log($('#text'+ (id + 1)))
-            $('#text'+ (id + 1)).focus();
-        }
+    html += oldText.text().slice(inputLen);
+    if(html) {
+        oldText.html(html);
     }
 }
 function ajaxHandler(Data) {
@@ -84,8 +88,8 @@ function ajaxHandler(Data) {
     var html='';
     //文本去除换行  replace(/\s+([\u4e00-\u9fa5])/ig,'$1'):去除中文的空格，
     var data = Data.replace(/\r\n/g, "").replace(/\s+([\u4e00-\u9fa5])/ig,'$1');
-    dataArr = getStringLen(data, 2);
-    for(var i=0;i < dataArr.length;i++){
+    dataArr = getStringLen(data, 20);
+    for(var i = 0;i < dataArr.length;i++){
         html += "<div class='u-list'>"
               +     "<p class='oldText'>"
               +         dataArr[i]
@@ -95,7 +99,8 @@ function ajaxHandler(Data) {
               + "</div>"
     }
     $(".m-type").html(html);
-    $('input').keyup(function (e) {
+    //textchange事件，中文输入法输出后触发
+    $('input').unbind('textchange').bind("textchange", function (e) {
         compareText(e);
     })
 }
