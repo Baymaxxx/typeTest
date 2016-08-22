@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea name="text1" id="text1" cols="30" rows="10">aaa ab cc aa </textarea>
+<textarea name="text2" id="text2" cols="30" rows="10">aaa bb cc da </textarea>
+<div id="context"> </div>
+<button type="button">按钮</button>
+<script src="diff_match_patch.js"></script>
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+    diff_match_patch.prototype.diff_linesToWords_ = function(text1, text2) {
+        var lineArray = [];
+        var lineHash = {};
+
+        lineArray[0] = '';
+
+        function diff_linesToCharsMunge_(text) {
+            var chars = '';
+            var lineStart = 0;
+            var lineEnd = -1;
+            var lineArrayLength = lineArray.length;
+            var line;
+
+            while (lineEnd < text.length - 1) {
+                // Everything that is not a word symbol - is a separator.
+                lineEnd = text.substring(lineStart).search(/[^\w]/);
+
+                if (lineEnd == -1) {
+                    lineEnd = text.length - 1;
+                } else {
+                    lineEnd += lineStart;
+                }
+
+                // Do not include separator symbols in line.
+                if (lineStart === lineEnd) {
+                    line = text.substring(lineStart, lineEnd + 1);
+                    lineStart = lineEnd + 1;
+                } else {
+                    line = text.substring(lineStart, lineEnd);
+                    lineStart = lineEnd;
+                }
+
+                try {
+
+                    // NOTE if you have hasOwnProperty in lineHash - then you are going to call on number and get a message like this:
+                    // if (lineHash.hasOwnProperty ? lineHash.hasOwnProperty(line) : (lineHash[
+                    //                                              ^
+                    // TypeError: number is not a function
+
+                    // if (lineHash.hasOwnProperty ? lineHash.hasOwnProperty(line) : (lineHash[line] !== undefined)) {
+                    if (lineHash[line] !== undefined) {
+                        chars += String.fromCharCode(lineHash[line]);
+                    } else {
+                        chars += String.fromCharCode(lineArrayLength);
+                        lineHash[line] = lineArrayLength;
+                        lineArray[lineArrayLength++] = line;
+                    }
+                } catch (ex) {
+                    console.log(lineHash.hasOwnProperty, lineHash);
+                }
+            }
+            return chars;
+        }
+
+        var chars1 = diff_linesToCharsMunge_(text1);
+        var chars2 = diff_linesToCharsMunge_(text2);
+        return {chars1: chars1, chars2: chars2, lineArray: lineArray};
+    };
+
+    // ----------------------------------------------------------------------------------------------------------------- //
+    // Then you can calculate diff like this:
+   $('button').click(function () {
+       var text1 = $('#text1').val();
+       var text2 = $('#text2').val();
+       var dmp = new diff_match_patch();
+       var a = dmp.diff_linesToWords_(text1, text2);
+
+       var lineText1 = a['chars1'];
+       var lineText2 = a['chars2'];
+       var lineArray = a['lineArray'];
+
+       diff = dmp.diff_main(lineText1, lineText2, false);
+       dmp.diff_charsToLines_(diff, lineArray);
+       var ds = dmp.diff_prettyHtml(diff);
+       console.log(ds);
+        $('#context').html(ds);
+   })
+</script>
+</body>
+</html>
